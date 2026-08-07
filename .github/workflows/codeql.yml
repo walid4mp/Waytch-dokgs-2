@@ -1,27 +1,40 @@
-# =====================================================================
-#  Neon Cipher — Static analysis with CodeQL
-# =====================================================================
-name: CodeQL
+name: "CodeQL"
 
 on:
-  push: { branches: [main, develop] }
-  pull_request: { branches: [main] }
-  schedule: [{ cron: '0 6 * * MON' }]
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 6 * * 1'
 
 jobs:
   analyze:
-    name: Analyze (csharp)
+    name: Analyze
     runs-on: ubuntu-latest
+
     permissions:
       actions: read
       contents: read
       security-events: write
+
     strategy:
       fail-fast: false
-      matrix: { language: [csharp] }
+      matrix:
+        language:
+          - csharp
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
-        with: { languages: ${{ matrix.language }} }
-      - uses: github/codeql-action/analyze@v3
-        with: { category: '/language:${{ matrix.language }}' }
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
