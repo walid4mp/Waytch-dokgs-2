@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unity 2022.3 Android splash background override -->
+<androidResources>
+  <string name="app_name">Neon Cipher</string>
+  <string name="unity_player_settings_application_identifier">com.lumenbay.neoncipher</string>
+  <string name="unity_player_settings_company_name">Lumen Bay Studios</string>
+  <string name="unity_player_settings_product_name">Neon Cipher</string>
+  <string name="unity_player_settings_bundle_version">0.1.0</string>
+  <string name="unity_player_settings_bundle_version_code">1</string>
+  <string name="unity_player_settings_minimum_sdk_version">29</string>
+  <string name="unity_player_settings_target_sdk_version">34</string>
+  <bool name="unity_player_settings_keystore_use_custom">true</bool>
+  <string name="unity_player_settings_keystore_custom_alias">neoncipher</string>
+  <string name="unity_player_settings_keystore_custom_keystore_name">release.keystore</string>
+</androidResources>

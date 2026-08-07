@@ -1,0 +1,21 @@
+{
+  "entries":[
+    {"k":"app.title","v":"Neon Cipher"},
+    {"k":"app.tagline","v":"Piratez la ville sans laisser de traces."},
+    {"k":"menu.new_game","v":"Nouvelle partie"},
+    {"k":"menu.continue","v":"Continuer"},
+    {"k":"menu.options","v":"Options"},
+    {"k":"menu.quit","v":"Quitter"},
+    {"k":"hud.wanted","v":"Recherché : {0}"},
+    {"k":"hack.eye","v":"Pirate Caméra"},
+    {"k":"hack.cypher","v":"Cypher Lock"},
+    {"k":"hack.signal","v":"Signal Override"},
+    {"k":"hack.swarm","v":"Pirate Essaim"},
+    {"k":"hack.grid","v":"Grid Tap"},
+    {"k":"hack.console","v":"Console Breach"},
+    {"k":"locale.en","v":"Anglais"},
+    {"k":"locale.fr","v":"Français"},
+    {"k":"locale.ar","v":"Arabe"},
+    {"k":"locale.ja","v":"Japonais"}
+  ]
+}

@@ -1,0 +1,71 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Asset meta data should only be ignored when project is exported
+# but meta data should be checked in for users to perceive changes
+# generated assets should be ignored
+**/*.meta
+!/Assets/**/Default.asset
+!/Assets/**/.meta
+!/ProjectSettings/**/*.meta
+
+# Visual Studio / Rider / VSCode / JetBrains
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*
+
+# Android keystores / secrets
+Configs/*.keystore
+Configs/*.keystore.example
+*.jks
+*.p12
+.env
+.env.*
+secrets.json
+
+# Generated CI artefacts that should not be re-committed
+/BuildScripts/CI/output/
+
+# Localisation generated PO/MO
+**/*.mo
+**/*.po~
+
+# OS junk
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brandBackground">#0B0B23</color>
+    <color name="brandAccent">#7AE7FF</color>
+    <color name="brandAccentAlt">#FF79E7</color>
+</resources>

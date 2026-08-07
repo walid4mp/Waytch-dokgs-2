@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!129 &1
+PlayerSettings:
+  m_ObjectHideFlags: 0
+  productGUID: 9d3a1e9a0c0a4f3e9b3c4d5e6f7a8b9c
+  AndroidProfiler: 0
+  AndroidFilterTouchesWhenObscured: 0
+  AndroidEnableSustainedPerformanceMode: 0
+  defaultScreenOrientation: 4
+  targetPixelDensity: 30
+  resizableWindow: 1
+  targetOSVersion: 29.0
+  productName: Neon Cipher
+  companyName: Lumen Bay Studios
+  m_SplashScreenBackgroundColor: {r: 0.0431, g: 0.0431, b: 0.1372, a: 1}
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
+  defaultScreenWidthWeb: 960
+  defaultScreenHeightWeb: 600
+  m_StereoRenderingPath: 0
+  m_ActiveColorSpace: 1
+  unsupportedMSAAFallback: 0
+  m_SpriteBatchVertexThreshold: 300
+  m_MTRendering: 1
+  androidStartInFullscreen: 1
+  androidRenderOutsideSafeArea: 1
+  androidUseSwappy: 1
+  androidBlitType: 0
+  androidResizableWindow: 1
+  androidDefaultWindowWidth: 1920
+  androidDefaultWindowHeight: 1080
+  androidMinimumWindowWidth: 400
+  androidMinimumWindowHeight: 300
+  androidFullscreenMode: 1
+  runInBackground: 1
+  captureSingleScreen: 0
+  muteOtherAudioSources: 0
+  VorbisBitrate: 128000
+  audioBufferCount: 256
+  fixedTimeStep: 0.016666668
+  maxDeltaTime: 0.05
+  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  androidShowActivityIndicatorOnLoading: -1
+  iosShowActivityIndicatorOnLoading: -1
+  useOSAutorotation: 1
+  use32BitDisplayBuffer: 1
+  preserveFramebufferAlpha: 0
+  defaultIsNativeResolution: 1
+  macRetinaSupport: 1
+  m_BuildTargetGraphicsJobs: 0
+  allowedMainThreadStripping: 1
+  m_DefaultRenderingLayerMask: 1
+  vrSettings:
+    enable360StereoCapture: 0
+  bundleVersion: 0.1.0
+  bundleVersionCode: 1
+  minimumSplashScreenTimeoutSeconds: 0

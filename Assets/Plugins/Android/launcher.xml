@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- launcher.xml — alias points to the adaptive icon -->
+<resources>
+    <string name="launcher_name" translatable="false">Neon Cipher</string>
+</resources>

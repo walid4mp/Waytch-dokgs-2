@@ -1,0 +1,23 @@
+{
+  "entries":[
+    {"k":"app.title","v":"Neon Cipher"},
+    {"k":"app.tagline","v":"Hack the city without leaving footprints."},
+    {"k":"menu.new_game","v":"New Game"},
+    {"k":"menu.continue","v":"Continue"},
+    {"k":"menu.options","v":"Options"},
+    {"k":"menu.quit","v":"Quit"},
+    {"k":"hud.wanted","v":"Wanted: {0}"},
+    {"k":"hack.eye","v":"Eye Hack"},
+    {"k":"hack.cypher","v":"Cypher Lock"},
+    {"k":"hack.signal","v":"Signal Override"},
+    {"k":"hack.swarm","v":"Swarm Hack"},
+    {"k":"hack.grid","v":"Grid Tap"},
+    {"k":"hack.console","v":"Console Breach"},
+    {"k":"mission.started","v":"Mission: {0}"},
+    {"k":"mission.complete","v":"Completed: {0}"},
+    {"k":"locale.en","v":"English"},
+    {"k":"locale.fr","v":"Français"},
+    {"k":"locale.ar","v":"العربية"},
+    {"k":"locale.ja","v":"日本語"}
+  ]
+}

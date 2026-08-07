@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neon Cipher logo mark – stylised bracketed neon "C" -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108"
+        android:viewportHeight="108">
+    <path
+        android:fillColor="#7AE7FF"
+        android:pathData="M54,30 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0z"
+        android:fillType="evenOdd"/>
+    <path
+        android:fillColor="#0B0B23"
+        android:pathData="M54,30 m-12,0 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0z"/>
+    <path
+        android:strokeColor="#FF79E7"
+        android:strokeWidth="3"
+        android:pathData="M34,62 L42,70 L42,80 L34,88"/>
+    <path
+        android:strokeColor="#FF79E7"
+        android:strokeWidth="3"
+        android:pathData="M74,62 L66,70 L66,80 L74,88"/>
+    <path
+        android:fillColor="#FFE066"
+        android:pathData="M54,76 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0z"/>
+</vector>
