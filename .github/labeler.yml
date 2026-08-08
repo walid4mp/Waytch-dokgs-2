@@ -1,0 +1,42 @@
+# =====================================================================
+#  Neon Cipher — Labeler path -> label mapping
+#  Used by actions/labeler@v5 (see .github/workflows/labels.yml).
+# =====================================================================
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+
+build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ProjectSettings/**
+          - Packages/**
+          - '**/Editor/**'
+
+gameplay:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Assets/Scripts/**
+
+android:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Assets/Plugins/Android/**
+
+localization:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Assets/StreamingAssets/Localization/**
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - Documentation/**
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Assets/Tests/**

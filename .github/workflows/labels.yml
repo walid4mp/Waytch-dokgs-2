@@ -1,6 +1,13 @@
-name: PR للعلامات
+# =====================================================================
+#  Neon Cipher — PR Labeler
+#  Auto-labels pull requests based on changed file paths.
+#  Requires .github/labeler.yml (the path -> label mapping).
+# =====================================================================
+name: PR Labeler
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
@@ -8,8 +15,10 @@ permissions:
 
 jobs:
   label:
+    name: Apply labels
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/labeler@v5
+      - name: Label PR
+        uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

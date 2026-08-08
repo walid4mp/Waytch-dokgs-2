@@ -1,6 +1,6 @@
 # =====================================================================
 #  Neon Cipher — CI/CD Pipeline
-#  Builds Linux tests, Android Debug/Apk, Android Release/Aab, Windows64
+#  Tests (Edit Mode) + Windows64 + Android Debug APK + Android Release AAB
 #  =====================================================================
 name: Neon Cipher CI
 
@@ -15,33 +15,40 @@ on:
 env:
   PROJECT_NAME: NeonCipher
   UNITY_VERSION: 2022.3.20f1
-  BUILD_TARGETS: StandaloneWindows64;Android
 
 jobs:
   ############################################################
-  # 1. Edit-mode + Play-mode unit tests
+  # 1. Edit Mode unit tests (unity-test-runner)
   ############################################################
-  test:
-    name: Unit Tests (Edit + Play Mode)
+  test-editmode:
+    name: Edit Mode Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: { lfs: true, submodules: recursive }
-      - uses: game-ci/unity-builder@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Run Edit Mode tests
+        uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:   ${{ secrets.UNITY_EMAIL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
-          targetPlatform: Test
           testMode: editmode
-          artifactsPath: artifacts/test
+          artifactsPath: test-results
           customParameters: -nographics -batchmode
-      - uses: actions/upload-artifact@v4
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Edit Mode Test Results
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: artifacts/test
+          name: test-results-editmode
+          path: test-results
 
   ############################################################
   # 2. Windows 64 standalone build
@@ -49,24 +56,32 @@ jobs:
   build-windows:
     name: Standalone Windows64
     runs-on: ubuntu-latest
-    needs: test
+    needs: test-editmode
     steps:
-      - uses: actions/checkout@v4
-        with: { lfs: true, submodules: recursive }
-      - uses: game-ci/unity-builder@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Build Windows64
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:   ${{ secrets.UNITY_EMAIL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: StandaloneWindows64
           buildName: ${{ env.PROJECT_NAME }}-Windows64
-          artifactsPath: artifacts/windows64
-      - uses: actions/upload-artifact@v4
+          buildsPath: build
+          customParameters: -nographics -batchmode
+
+      - name: Upload Windows64 artifact
+        uses: actions/upload-artifact@v4
         with:
           name: NeonCipher-Windows64
-          path: artifacts/windows64
+          path: build/StandaloneWindows64
 
   ############################################################
   # 3. Android Debug APK
@@ -74,57 +89,73 @@ jobs:
   build-android-debug-apk:
     name: Android Debug (APK)
     runs-on: ubuntu-latest
-    needs: test
+    needs: test-editmode
     steps:
-      - uses: actions/checkout@v4
-        with: { lfs: true, submodules: recursive }
-      - uses: game-ci/unity-builder@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Build Android Debug APK
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:   ${{ secrets.UNITY_EMAIL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
           buildName: ${{ env.PROJECT_NAME }}-Android-Debug
-          artifactsPath: artifacts/android-debug
-          customParameters: -developmentBuild
-      - uses: actions/upload-artifact@v4
+          buildsPath: build
+          androidExportType: androidPackage
+          customParameters: -nographics -batchmode
+
+      - name: Upload Android Debug APK
+        uses: actions/upload-artifact@v4
         with:
           name: NeonCipher-Android-Debug-Apk
-          path: artifacts/android-debug
+          path: build/Android
 
   ############################################################
-  # 4. Android Release AAB (Google Play-ready)
+  # 4. Android Release AAB (Google Play-ready, signed via secrets)
   ############################################################
   build-android-release-aab:
     name: Android Release (AAB / Play)
     runs-on: ubuntu-latest
-    needs: test
+    needs: test-editmode
     if: github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v4
-        with: { lfs: true, submodules: recursive }
-      - uses: game-ci/unity-builder@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Build Android Release AAB
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:   ${{ secrets.UNITY_EMAIL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_NAME:    neoncipher.jks
-          ANDROID_KEYSTORE_PASS:    ${{ secrets.ANDROID_KEYSTORE_PASS }}
-          ANDROID_KEYALIAS_NAME:    ${{ secrets.ANDROID_KEYALIAS_NAME }}
-          ANDROID_KEYALIAS_PASS:    ${{ secrets.ANDROID_KEYALIAS_PASS }}
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
           buildName: ${{ env.PROJECT_NAME }}-Android-Release
-          artifactsPath: artifacts/android-release
-          customParameters: -buildAppBundle
-      - uses: actions/upload-artifact@v4
+          buildsPath: build
+          androidExportType: androidAppBundle
+          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          androidKeystoreName: ${{ secrets.ANDROID_KEYSTORE_NAME }}
+          androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          androidKeyaliasName: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          androidKeyaliasPass: ${{ secrets.ANDROID_KEYALIAS_PASS }}
+          customParameters: -nographics -batchmode
+
+      - name: Upload Android Release AAB
+        uses: actions/upload-artifact@v4
         with:
           name: NeonCipher-Android-Release-Aab
-          path: artifacts/android-release
+          path: build/Android
 
   ############################################################
   # 5. GitHub Release on tag v*
@@ -134,13 +165,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-windows, build-android-debug-apk, build-android-release-aab]
     if: startsWith(github.ref, 'refs/tags/v')
-    permissions: { contents: write }
+    permissions:
+      contents: write
     steps:
-      - uses: actions/download-artifact@v4
-      - uses: softprops/action-gh-release@v2
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
           files: |
-            NeonCipher-Windows64/**/*
-            NeonCipher-Android-Debug-Apk/**/*
-            NeonCipher-Android-Release-Aab/**/*
+            artifacts/NeonCipher-Windows64/**/*
+            artifacts/NeonCipher-Android-Debug-Apk/**/*
+            artifacts/NeonCipher-Android-Release-Aab/**/*
           generate_release_notes: true
