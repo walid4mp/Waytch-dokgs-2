@@ -1,0 +1,1 @@
+{ "name": "NeonCipher.Editor", "rootNamespace": "NeonCipher.EditorTools", "references": [ "NeonCipher.Core", "NeonCipher.Game" ], "includePlatforms": [ "Editor" ], "excludePlatforms": [], "allowUnsafeCode": false, "overrideReferences": false, "precompiledReferences": [], "autoReferenced": true, "defineConstraints": [], "versionDefines": [], "noEngineReferences": false }

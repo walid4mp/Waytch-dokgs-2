@@ -12,10 +12,8 @@
 # Asset meta data should only be ignored when project is exported
 # but meta data should be checked in for users to perceive changes
 # generated assets should be ignored
-**/*.meta
+# .meta files are committed (GUID links required by Unity)
 !/Assets/**/Default.asset
-!/Assets/**/.meta
-!/ProjectSettings/**/*.meta
 
 # Visual Studio / Rider / VSCode / JetBrains
 .vs/
